@@ -15,7 +15,7 @@ stage('build') {
  
     stage('Deploy') { 
             steps {
-              sh "cp /home/jenkins/workspace/job1/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.60/webapps"
+              sh "cp /jenkins/workspace/job1/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.60/webapps"
     
 }
     }
