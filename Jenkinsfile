@@ -8,15 +8,12 @@ pipeline {
         }
 stage('build') { 
             steps {
-              sh "mvn clean package"
-                
+              sh "mvn clean package"                
             }
         }        
- 
     stage('Deploy') { 
             steps {
-              sh "cp /jenkins/workspace/job1/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.60/webapps"
-    
+              sh "sudo cp /jenkins/workspace/job1/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.60/webapps"   
 }
     }
     }
