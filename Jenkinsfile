@@ -13,7 +13,7 @@ stage('build') {
         }        
     stage('Deploy') { 
             steps {
-              sh "sudo cp /jenkins/workspace/job1/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.60/webapps"   
+              sh " cp /home/slave2/jenkins/workspace/job1/target/hello-world-war-1.0.0 /opt/apache-tomcat-9.0.60/webapps"   
 }
     }
     }
