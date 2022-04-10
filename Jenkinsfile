@@ -1,20 +1,34 @@
-pipeline {
-    agent { label 'java' }
-    stages {
-        stage('checkout') { 
-            steps {
-              sh "git clone https://github.com/shashankvirat/hello-world-war"
+pipeline{
+      agent { label 'java1' }
+      stages{
+      stage('check out'){
+                  steps{
+                  sh "rm -rf hello-world-war"
+                  sh "git clone https://github.com/shashankvirat/hello-world-war"
+                  }
+                  }
+      stage('build'){
+      steps{
+      sh "pwd"
+      sh "ls"
+      sh "cd hello-world-war"
+      sh "docker build -t shashankvirat/file:1.0 ."
+      }
+      }
+       stage('publish'){
+                  steps{
+                        sh "docker login -u shashankvirat -p Virat@123"
+                        sh "docker push shashankvirat/file:1.0"
+                  }
             }
-        }
-stage('buildd') { 
-            steps {
-              sh "mvn clean package"                
+            stage('deploy'){
+                  agent { label 'java2' }
+                  steps{
+                        sh "docker login -u shashankvirat -p Virat@123"
+                        sh "docker pull shashankvirat -p Virat@123"
+                        //sh "docker rm -f trail1"
+                        sh "docker run -d -p 8082:8080 --name trail1 shashankvirat/file:1.0"
+                  }
             }
-        }        
-    stage('Deploy') { 
-            steps {
-              sh " cp /home/slave2/jenkins/workspace/job1/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.60/webapps"   
-}
-    }
-    }
-    }
+      }
+      }
