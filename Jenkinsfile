@@ -26,7 +26,7 @@ pipeline{
                   steps{
                         sh "docker login -u shashankvirat -p Virat@123"
                         sh "docker pull shashankvirat/file:1.0"
-                        //sh "docker rm -f trail1"
+                        sh "docker rm -f trail1"
                         sh "docker run -d -p 8082:8080 --name trail1 shashankvirat/file:1.0"
                   }
             }
